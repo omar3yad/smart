@@ -2,7 +2,6 @@ from pathlib import Path
 import os
 from dotenv import load_dotenv
 from datetime import timedelta
-import dj_database_url
 
 # Build paths first — before anything else
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -69,11 +68,16 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # ===== DATABASE (single — reads from .env) =====
+# ===== DATABASE (single — reads from .env) =====
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
-        conn_max_age=600
-    )
+    'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'smart_parking_db',   
+            'USER': 'postgres',    
+            'PASSWORD': '1234',    
+            'HOST': '127.0.0.1',            # لأنها على جهازك حالياً
+            'PORT': '5432',                 # بورت البوستجرس الافتراضي
+    }
 }
 
 # ===== PASSWORD VALIDATION =====

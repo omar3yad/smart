@@ -581,7 +581,7 @@ class UpdateEntryEmbeddingAPIView(APIView):
         last_vehicle = VehicleLog.objects.filter(
             is_inside=True,
             status='moving',
-            entry_time__gte=time_limit,
+            # entry_time__gte=time_limit,
             # نفترض أن كاميرا الدخول ثابتة ومعروفة بـ CAM-ENTRY
             last_camera_id=1,
             car_embedding__isnull=True
